@@ -14,6 +14,7 @@ public class Personagem : MonoBehaviour
     public float vidaPersonagem = 100f;
     [SerializeField]private float velocidadePersonagem = 5f;
     [SerializeField]private float forcaPulo = 600f;
+    [SerializeField]private float queda = 5f;
 
     // Circulo da base do pe do personagem, serve para identificar colisor com o chao.
     [SerializeField]private float tamanhoCirculoBase = 2.5f;
@@ -33,6 +34,8 @@ public class Personagem : MonoBehaviour
     //A unity Recomenda usar um hash como "variavel do animator" p melhorar desempenho
     private int correndoHash = Animator.StringToHash("Correndo");
     private int saltandoHash = Animator.StringToHash("Saltando");
+    private int caindoHash = Animator.StringToHash("Caindo");
+
 
     //Método de quando se inicia o jogo
     private void Awake ()
@@ -64,6 +67,8 @@ public class Personagem : MonoBehaviour
        // Codigo que controla as animacoes
        animator.SetBool(correndoHash, horizontalInput != 0);
        animator.SetBool(saltandoHash, !permitirPulo);
+       animator.SetBool(caindoHash, rb.velocity.y > queda && !permitirPulo);
+
 
        if(horizontalInput > 0)
        {
