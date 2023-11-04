@@ -5,7 +5,11 @@ using UnityEngine.InputSystem;
 
 /*Tutoriais usados: 
 Animacao:
-        https://www.youtube.com/watch?v=9jgcEWnbHZA
+        UNITY TUTORIAL 2D | Como Movimentar e Animar um Personagem 2D - https://www.youtube.com/watch?v=9jgcEWnbHZA
+        Chamar Método Repetidas Vezes A Cada Intervalo De Tempo - Invoke Repeating - Dicas de C# e Unity !! - https://www.youtube.com/watch?v=6JNYHttVdMA
+        Tutorial Unity | Plataforma 2D - https://www.youtube.com/watch?v=XcdRuE8KlKg&list=PLgTmU6kuSLtz1GCoybobrln0nZilckt-Z&index=6 
+        Como fazer ANIMAÇÃO na UNITY? - UNITY TUTORIAL - https://www.youtube.com/watch?v=VsFlnlHRau8
+
 */
 
 public class Personagem : MonoBehaviour
@@ -16,16 +20,24 @@ public class Personagem : MonoBehaviour
     public float vidaPersonagem = 100f;
     [SerializeField]private float velocidadePersonagem = 5f;
     [SerializeField]private float forcaPulo = 600f;
+    [SerializeField]private float forcaDash = 600f;
+    [SerializeField]private float cargaDash = 3f;
+    [SerializeField]private float tempoCargaDash = 3f;
+    [SerializeField]private float limiteCargaDash = 3f;
     // Velocidade vertical a qual considero que o personagem esta caindo e nao so pulando
-    [SerializeField]private float queda = 5f;
+    [SerializeField]private float quedaVelocidade = 5f;
+
 
     // Variaveis dos componentes do personagem
     private Animator animator;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
-    // Variavel para saber se o player pode jogar ou e machinima
-    public bool machinima = false;
+    // Variaveis auxiliares 
+    // Diz se o player esta em momento de gameplay ou machinima
+    [SerializeField] private bool machinima = false;
+    [SerializeField] private float danoDeQueda = 5f;
+    [SerializeField]private string nomeDaTag;
 
     // Variaveis auxiliares para realizar a movimentacao horizontal do personagem
     private Vector2 Input = new Vector2();
@@ -45,16 +57,30 @@ public class Personagem : MonoBehaviour
     [SerializeField]private float offset = 1f;
     private Vector3 offsetCodigo;
 
+    // Variaveis auxiliares para a animacao do ataque
+    [SerializeField]private float intervaloAtaque;
+    private float proximoAtaque;
+
+    // Variaveis auxiliares para a animacao de hit
+    [SerializeField]private float tempoDeHit = 0.43f;
+
     // A unity Recomenda usar um hash como "variavel do animator" p melhorar desempenho
     private int correndoHash = Animator.StringToHash("Correndo");
     private int saltandoHash = Animator.StringToHash("Saltando");
     private int caindoHash = Animator.StringToHash("Caindo");
+    private int atacandoHash = Animator.StringToHash("Atacando");
+    private int dashingHash = Animator.StringToHash("Dashing");
+    private int deadingHash = Animator.StringToHash("Deading");
+    private int hittedHash = Animator.StringToHash("Hitted");
+
+    // Variaveis de contagem de tempo
+    [SerializeField]private float tempo = 0f;
 
     // -----------------------------------------Metodos-----------------------------------------
     // Metodo de quando se inicia o jogo
     private void Awake ()
     {
-        // Pega os componentes
+        // ------------ Pega os componentes
         // RigidBody2D
         rb = GetComponent<Rigidbody2D>();
         // Animacoes
@@ -64,78 +90,164 @@ public class Personagem : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    private void Start()
     {
-        if (machinima == false)
-        {
-            //Linha que faz o personagem andar
-            
-        }
-        
+    }
+
+    void FixedUpdate()
+    {        
     }
 
     // Update is called once per frame
     void Update()
     {
-       permitirPulo = Physics2D.OverlapCircle(basePersonagem.position, tamanhoCirculoBase, chaoLayer);
+        // Animacao de morte do personagem
+        if(vidaPersonagem < 0f)
+        {
+            animator.SetTrigger(deadingHash);
+            machinima = true;
+        }
 
-       // Codigo que controla as animacoes
-       // Correndo
-       animator.SetBool(correndoHash, horizontalInput != 0);
-       // Saltando
-       animator.SetBool(saltandoHash, !permitirPulo);
-       // Caindo
-       animator.SetBool(caindoHash, rb.velocity.y < -queda && !permitirPulo);
-       // Atacando
-       //animator.SetBool(atacandoHash);
-       
+        if(machinima == false)
+        {
+            tempo += Time.deltaTime;
 
-       // Controla o lado das animacoes, se estao para frente o para tras;
-       if(horizontalInput > 0)
-       {
-        sr.flipX = false;
+            // Loading do Dash
+            if (tempo > tempoCargaDash)
+            {
+                if (cargaDash >= 0 && cargaDash < limiteCargaDash)
+                {
+                    cargaDash++;
+                }
+                tempo = 0f; 
+            }
 
-       }else if (horizontalInput < 0)
-       {
-        sr.flipX = true;
-        
-       }
+            //  ------------ Esses codigos estao aqui por auxiliarem as animacoes
+            // Codigo do movimento do personagem em si
+            rb.velocity = new Vector2(horizontalInput * velocidadePersonagem, rb.velocity.y);  
+            // Ver se pode pular
+            permitirPulo = Physics2D.OverlapCircle(basePersonagem.position, tamanhoCirculoBase, chaoLayer);
+
+            //  ------------ Codigo que controla as animacoes
+            // Correndo
+            animator.SetBool(correndoHash, horizontalInput != 0);
+            // Saltando
+            animator.SetBool(saltandoHash, !permitirPulo);
+            // Caindo
+            animator.SetBool(caindoHash, rb.velocity.y < -quedaVelocidade && !permitirPulo);
+            if (rb.velocity.y < -quedaVelocidade && permitirPulo == false)
+            {
+                vidaPersonagem = vidaPersonagem - danoDeQueda;
+                print(vidaPersonagem);
+            }
+
+            //  ------------ Controla o lado das animacoes, se estao para frente o para tras;
+            if(horizontalInput > 0)
+            { 
+                sr.flipX = false;
+            }else if (horizontalInput < 0)
+            {
+                sr.flipX = true;
+            }
+        }
     }
     
+    // Controle de movimentacao do personagem
     void OnMove(InputValue value)
     {
-        Input = value.Get<Vector2>();
-        horizontalInput = Input.x;
-
-        rb.velocity = new Vector2(horizontalInput * velocidadePersonagem, rb.velocity.y);
-
-        
-    }
-
-    //----------------Aqui é para pular, Onfire é só temporário, trocar--------------------------
-    void OnFire()
-    {
-        if(permitirPulo == true)
+        if(machinima == false)
         {
-            rb.AddForce(Vector2.up * forcaPulo);
+            // Pegar so o componente horizontal do vetor no input
+            Input = value.Get<Vector2>();
+            horizontalInput = Input.x;    
         }
-        
-   
     }
-
+    
+    // Controle de pulo do personagem
+    //----------------Aqui é para pular, Onfire é só temporário, trocar--------------------------
+    void OnJump()
+    {
+        if(machinima == false)
+        {
+            // Codigo do pulo em si
+            if(permitirPulo == true)
+            {
+                rb.AddForce(Vector2.up * forcaPulo);
+            }
+        }
+    }   
+    
+    // Controle de ataque do personagem
     void OnAttack()
     {
-        
-
-        //Flipa o colisor do ataque o mantendo sempre a frente do personagem
-        offsetCodigo = new Vector3(offset, 0.0f, 0.0f);
-
-        if(sr.flipX == false)
+        if(machinima == false)
         {
-            colisor.position = frente.position + offsetCodigo;
-        }else
+            if(Time.time > proximoAtaque)
+            {
+                // Contador para proximo ataque
+                proximoAtaque = Time.time + intervaloAtaque;
+                
+                animator.SetTrigger(atacandoHash);
+
+                //Flipa o colisor do ataque o mantendo sempre a frente do personagem
+                // Offset
+                offsetCodigo = new Vector3(offset, 0.0f, 0.0f);
+                // Codigo do flip
+                if(sr.flipX == false)
+                {
+                    colisor.position = frente.position + offsetCodigo;
+                }else
+                {
+                    colisor.position = atras.position - offsetCodigo;
+                }
+            }
+        } 
+    }
+
+    // Controle do Dash do pesonagem
+    void OnDash ()
+    {
+        if(machinima == false)
         {
-            colisor.position = atras.position - offsetCodigo;
+            // Ve se o personagem nao esta atacando
+            if(Time.time > proximoAtaque)
+            {
+                // Ve se o personagem tem carga para o dash
+                if(cargaDash > 0)
+                {
+                    animator.SetTrigger(dashingHash);
+
+                    if(sr.flipX == false)
+                    {
+                        rb.AddForce(Vector2.right * forcaDash);
+                    }else
+                    {
+                        rb.AddForce(Vector2.left * forcaDash);
+                    }       
+                    cargaDash--;
+                }
+            }
         }
     }
+
+    // Animacao ho hit no personagem
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.CompareTag(nomeDaTag))
+        {
+            animator.SetTrigger(hittedHash);
+            
+            machinima = true;
+            
+            StartCoroutine(hittedTime());
+        }
+    }
+
+    private IEnumerator hittedTime()
+    {
+        yield return new WaitForSeconds(tempoDeHit);
+        machinima = false;
+        vidaPersonagem = -1f;
+    }
+
 }
