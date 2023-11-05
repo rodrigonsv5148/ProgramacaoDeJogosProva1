@@ -462,7 +462,7 @@ TextureImporter:
       213: 3450859849191035812
     second: Tileset1_152
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -483,7 +483,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -506,7 +505,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -522,7 +521,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -550,6 +548,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 4
@@ -3786,160 +3808,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Tileset1_0: -2870143772410390703
-      Tileset1_1: 1644939726588251722
-      Tileset1_10: -8997036689895436410
-      Tileset1_100: 6092022480676326188
-      Tileset1_101: -7858636333855987997
-      Tileset1_102: -4648903468010906950
-      Tileset1_103: 583217019438137009
-      Tileset1_104: -358040026151801184
-      Tileset1_105: -5942565224311036265
-      Tileset1_106: -961023440489892717
-      Tileset1_107: 6595654613427350149
-      Tileset1_108: -1456038800084591754
-      Tileset1_109: 6717868634296908664
-      Tileset1_11: 5206578344248036716
-      Tileset1_110: 9132085249904639831
-      Tileset1_111: 5816645722257079173
-      Tileset1_112: -4074177248562530507
-      Tileset1_113: 2795273457725218243
-      Tileset1_114: 6283291888863951990
-      Tileset1_115: 8043774690487145163
-      Tileset1_116: 4400195759562617584
-      Tileset1_117: -4609878210817416549
-      Tileset1_118: 4460856393716007110
-      Tileset1_119: 4527150993213111654
-      Tileset1_12: 1836532595285178768
-      Tileset1_120: 8743848295854629002
-      Tileset1_121: 2012655684617424311
-      Tileset1_122: -7660537421197141936
-      Tileset1_123: 317296359221609865
-      Tileset1_124: -6939896043268305731
-      Tileset1_125: -4872235798915679006
-      Tileset1_126: -5071026928205227574
-      Tileset1_127: -7411763645939194735
-      Tileset1_128: -7849886298309179633
-      Tileset1_129: 1407800687793267227
-      Tileset1_13: -6906748727693913539
-      Tileset1_130: -5687742470604747468
-      Tileset1_131: 3940765477256596240
-      Tileset1_132: 4308512895838759048
-      Tileset1_133: 8401742599347538923
-      Tileset1_134: 6687171441297014605
-      Tileset1_135: 7788180468167744433
-      Tileset1_136: 2899863173725899280
-      Tileset1_137: 829859955962718150
-      Tileset1_138: 3814381927788088389
-      Tileset1_139: 659830702415636227
-      Tileset1_14: -5194950278651765180
-      Tileset1_140: 3418769634756619579
-      Tileset1_141: 4772685619448649053
-      Tileset1_142: 829533100314694288
-      Tileset1_143: -6593627575352354799
-      Tileset1_144: 8076459445823600025
-      Tileset1_145: 3519632799389685270
-      Tileset1_146: 2330793660322079303
-      Tileset1_147: 7559618301349492135
-      Tileset1_148: -1377529018978267677
-      Tileset1_149: -7948531417487118534
-      Tileset1_15: 8457534629377244653
-      Tileset1_150: 6231726366563101568
-      Tileset1_151: 5978165419092417163
-      Tileset1_152: 3450859849191035812
-      Tileset1_16: -9169824291460800576
-      Tileset1_17: -567572773171336444
-      Tileset1_18: 3937083617508734337
-      Tileset1_19: 8263071866097157816
-      Tileset1_2: 7724290689761396270
-      Tileset1_20: 2839185224301018437
-      Tileset1_21: 3733694398605605581
-      Tileset1_22: -441140173182366112
-      Tileset1_23: -4586770242476713718
-      Tileset1_24: -1784190302113651218
-      Tileset1_25: -8766978566908779576
-      Tileset1_26: 5355695930943407728
-      Tileset1_27: 7149437324216308553
-      Tileset1_28: 1536625695810153065
-      Tileset1_29: -8827143937817406013
-      Tileset1_3: -3995477275073983152
-      Tileset1_30: 5918241774501035200
-      Tileset1_31: 6963634402692000890
-      Tileset1_32: 8021413523713645929
-      Tileset1_33: 6456324618641698375
-      Tileset1_34: -664021781657510894
-      Tileset1_35: -3569188126070319226
-      Tileset1_36: 5125714379792182308
-      Tileset1_37: -3765686386048791679
-      Tileset1_38: 1082076590722343866
-      Tileset1_39: -982855079852580331
-      Tileset1_4: 7901823937690315267
-      Tileset1_40: 9012973954793528951
-      Tileset1_41: 6814444157877847548
-      Tileset1_42: 3043913218237103177
-      Tileset1_43: 5751404578655947198
-      Tileset1_44: 4272402659918971624
-      Tileset1_45: 4043313693858740117
-      Tileset1_46: 1780167944426034672
-      Tileset1_47: 2438446133824273503
-      Tileset1_48: 1880878667951305685
-      Tileset1_49: 8094024702661448655
-      Tileset1_5: 7997692744749058258
-      Tileset1_50: -355808510582094796
-      Tileset1_51: 571151705558787483
-      Tileset1_52: -7725366592679129615
-      Tileset1_53: 6249595782066046391
-      Tileset1_54: 2299605699918779750
-      Tileset1_55: -2054963270409538182
-      Tileset1_56: -4088741855965898743
-      Tileset1_57: 6873152189030369313
-      Tileset1_58: -6319877083806107785
-      Tileset1_59: -543166693092869067
-      Tileset1_6: 7643183760616247997
-      Tileset1_60: -6385837194712664052
-      Tileset1_61: -4130172619439999174
-      Tileset1_62: 5515865379828058817
-      Tileset1_63: 4459652379068785322
-      Tileset1_64: -7585374182038476663
-      Tileset1_65: 999312663022411553
-      Tileset1_66: 683142549893957091
-      Tileset1_67: 8872557846375335829
-      Tileset1_68: -2592911003966829289
-      Tileset1_69: -877652495142908962
-      Tileset1_7: 5878129920589472326
-      Tileset1_70: 7679472033359688652
-      Tileset1_71: -8169992833783908739
-      Tileset1_72: -5361735015502750195
-      Tileset1_73: -5078323182875207989
-      Tileset1_74: -2584183726031804203
-      Tileset1_75: -8534085211564174313
-      Tileset1_76: -6135344824538719422
-      Tileset1_77: 6700666404735987453
-      Tileset1_78: 7661048152305383577
-      Tileset1_79: 9118763071551427796
-      Tileset1_8: 8195979012739327139
-      Tileset1_80: 7092731284600117691
-      Tileset1_81: 1185099580813000079
-      Tileset1_82: 2111269354440138291
-      Tileset1_83: -1686092743976264993
-      Tileset1_84: 768359378245276697
-      Tileset1_85: 1666625963184941829
-      Tileset1_86: -6421273063288351843
-      Tileset1_87: 3113101545163791902
-      Tileset1_88: 5725921495621751070
-      Tileset1_89: -6983984770956225136
-      Tileset1_9: -3010305434434470039
-      Tileset1_90: -1564826936720002304
-      Tileset1_91: -1130866536398845884
-      Tileset1_92: -6323629629178347668
-      Tileset1_93: 792904541892128085
-      Tileset1_94: -8134985564545284974
-      Tileset1_95: 2074016507881746393
-      Tileset1_96: 7853031957271099195
-      Tileset1_97: -674699284930111641
-      Tileset1_98: -76775511171332286
-      Tileset1_99: -2445633072916219436
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
