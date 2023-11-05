@@ -11,18 +11,24 @@ public class MoveInimigo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         Vector3 direcaoDoJogador = player.position - transform.position;
-
-         Vector3 normalDirecao = direcaoDoJogador.normalized;
-
-         Vector3 novaPosicao = transform.position + normalDirecao * velInimigo * Time.deltaTime;
-
-         transform.position = novaPosicao;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (player != null) 
+        {
+            
+            Vector3 direcaoDoJogador = player.position - transform.position;
+
+            Debug.DrawRay(transform.position, direcaoDoJogador, Color.red);
+
+            Vector3 normalDirecao = direcaoDoJogador.normalized;
+
+            Vector3 novaPosicao = transform.position + normalDirecao * velInimigo * Time.deltaTime;
+
+            transform.position = novaPosicao;
+        }
     }
 }
