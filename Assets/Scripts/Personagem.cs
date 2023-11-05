@@ -24,6 +24,7 @@ public class Personagem : MonoBehaviour
     [SerializeField]private float cargaDash = 3f;
     [SerializeField]private float tempoCargaDash = 3f;
     [SerializeField]private float limiteCargaDash = 3f;
+    [SerializeField]private float decrescimoVida = 1f;
     // Velocidade vertical a qual considero que o personagem esta caindo e nao so pulando
     [SerializeField]private float quedaVelocidade = 5f;
 
@@ -73,8 +74,16 @@ public class Personagem : MonoBehaviour
     private int deadingHash = Animator.StringToHash("Deading");
     private int hittedHash = Animator.StringToHash("Hitted");
 
+    // Variaveis relacionadas aos audios do personagem
+    [SerializeField]private AudioSource correndoAudio;
+    [SerializeField]private AudioSource saltandoAudio;
+    [SerializeField]private AudioSource atacandoAudio;
+    [SerializeField]private AudioSource dashingAudio;
+    [SerializeField]private AudioSource deadingAudio;
+    [SerializeField]private AudioSource hittedAudio;
+
     // Variaveis de contagem de tempo
-    [SerializeField]private float tempo = 0f;
+    private float tempo = 0f;
 
     // -----------------------------------------Metodos-----------------------------------------
     // Metodo de quando se inicia o jogo
@@ -92,6 +101,7 @@ public class Personagem : MonoBehaviour
 
     private void Start()
     {
+        correndoAudio.Play();
     }
 
     void FixedUpdate()
@@ -101,9 +111,16 @@ public class Personagem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        vidaPersonagem -= (decrescimoVida * 0.001f);
+
+        print(vidaPersonagem);
         // Animacao de morte do personagem
         if(vidaPersonagem < 0f)
         {
+            if (machinima == false)
+            {
+                deadingAudio.Play();
+            }
             animator.SetTrigger(deadingHash);
             machinima = true;
         }
@@ -124,7 +141,7 @@ public class Personagem : MonoBehaviour
 
             //  ------------ Esses codigos estao aqui por auxiliarem as animacoes
             // Codigo do movimento do personagem em si
-            rb.velocity = new Vector2(horizontalInput * velocidadePersonagem, rb.velocity.y);  
+            rb.velocity = new Vector2(horizontalInput * velocidadePersonagem, rb.velocity.y);
             // Ver se pode pular
             permitirPulo = Physics2D.OverlapCircle(basePersonagem.position, tamanhoCirculoBase, chaoLayer);
 
@@ -140,6 +157,14 @@ public class Personagem : MonoBehaviour
                 vidaPersonagem = vidaPersonagem - danoDeQueda;
                 print(vidaPersonagem);
             }
+
+            // Audios do personagem
+            // Audio de correndo
+            if(horizontalInput == 0 && permitirPulo == true)
+            {
+                correndoAudio.Stop();
+            }
+
 
             //  ------------ Controla o lado das animacoes, se estao para frente o para tras;
             if(horizontalInput > 0)
@@ -160,6 +185,7 @@ public class Personagem : MonoBehaviour
             // Pegar so o componente horizontal do vetor no input
             Input = value.Get<Vector2>();
             horizontalInput = Input.x;    
+            correndoAudio.Play();
         }
     }
     
@@ -172,6 +198,7 @@ public class Personagem : MonoBehaviour
             // Codigo do pulo em si
             if(permitirPulo == true)
             {
+                saltandoAudio.Play();
                 rb.AddForce(Vector2.up * forcaPulo);
             }
         }
@@ -187,6 +214,8 @@ public class Personagem : MonoBehaviour
                 // Contador para proximo ataque
                 proximoAtaque = Time.time + intervaloAtaque;
                 
+                atacandoAudio.Play();
+
                 animator.SetTrigger(atacandoHash);
 
                 //Flipa o colisor do ataque o mantendo sempre a frente do personagem
@@ -215,6 +244,7 @@ public class Personagem : MonoBehaviour
                 // Ve se o personagem tem carga para o dash
                 if(cargaDash > 0)
                 {
+                    dashingAudio.Play();
                     animator.SetTrigger(dashingHash);
 
                     if(sr.flipX == false)
@@ -235,6 +265,7 @@ public class Personagem : MonoBehaviour
     {
         if(other.gameObject.CompareTag(nomeDaTag))
         {
+            hittedAudio.Play();
             animator.SetTrigger(hittedHash);
             
             machinima = true;
