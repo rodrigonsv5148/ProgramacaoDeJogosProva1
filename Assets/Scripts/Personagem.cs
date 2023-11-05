@@ -18,6 +18,7 @@ public class Personagem : MonoBehaviour
     
     // Variaveis relacionadas ao status do personagem
     public float vidaPersonagem = 100f;
+    public int personagem = 2;
     [SerializeField]private float velocidadePersonagem = 5f;
     [SerializeField]private float forcaPulo = 600f;
     [SerializeField]private float forcaDash = 600f;
@@ -27,8 +28,7 @@ public class Personagem : MonoBehaviour
     [SerializeField]private float decrescimoVida = 1f;
     // Velocidade vertical a qual considero que o personagem esta caindo e nao so pulando
     [SerializeField]private float quedaVelocidade = 5f;
-
-
+    
     // Variaveis dos componentes do personagem
     private Animator animator;
     private Rigidbody2D rb;
@@ -38,7 +38,7 @@ public class Personagem : MonoBehaviour
     // Diz se o player esta em momento de gameplay ou machinima
     [SerializeField] private bool machinima = false;
     [SerializeField] private float danoDeQueda = 5f;
-    [SerializeField]private string nomeDaTag;
+    [SerializeField] private string nomeDaTag;
 
     // Variaveis auxiliares para realizar a movimentacao horizontal do personagem
     private Vector2 Input = new Vector2();
@@ -101,7 +101,6 @@ public class Personagem : MonoBehaviour
 
     private void Start()
     {
-        correndoAudio.Play();
     }
 
     void FixedUpdate()
@@ -112,7 +111,7 @@ public class Personagem : MonoBehaviour
     void Update()
     {
         vidaPersonagem -= (decrescimoVida * 0.001f);
-
+        //------------------------------------PODE TIRAR O PRINT ABAIXO -----------------------
         print(vidaPersonagem);
         // Animacao de morte do personagem
         if(vidaPersonagem < 0f)
@@ -160,7 +159,7 @@ public class Personagem : MonoBehaviour
 
             // Audios do personagem
             // Audio de correndo
-            if(horizontalInput == 0 && permitirPulo == true)
+            if(horizontalInput == 0 || permitirPulo == false)
             {
                 correndoAudio.Stop();
             }
@@ -190,18 +189,21 @@ public class Personagem : MonoBehaviour
     }
     
     // Controle de pulo do personagem
-    //----------------Aqui é para pular, Onfire é só temporário, trocar--------------------------
     void OnJump()
     {
-        if(machinima == false)
+        if (personagem == 1)
         {
-            // Codigo do pulo em si
-            if(permitirPulo == true)
+            if(machinima == false)
             {
-                saltandoAudio.Play();
-                rb.AddForce(Vector2.up * forcaPulo);
+                // Codigo do pulo em si
+                if(permitirPulo == true)
+                {
+                    saltandoAudio.Play();
+                    rb.AddForce(Vector2.up * forcaPulo);
+                }
             }
         }
+        
     }   
     
     // Controle de ataque do personagem
@@ -280,5 +282,4 @@ public class Personagem : MonoBehaviour
         machinima = false;
         vidaPersonagem = -1f;
     }
-
 }
