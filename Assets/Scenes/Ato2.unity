@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 696009383}
   - component: {fileID: 696009382}
   - component: {fileID: 696009381}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: "Pe\xE7a 2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,6 +604,10 @@ PrefabInstance:
       value: FlyingEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 4451265849190698141, guid: 9c84334d3e5a7de4295edb095ac8f23b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451265849190698141, guid: 9c84334d3e5a7de4295edb095ac8f23b, type: 3}
       propertyPath: m_TagString
       value: enemy
       objectReference: {fileID: 0}
@@ -679,6 +683,10 @@ PrefabInstance:
     - target: {fileID: 4451265849190698141, guid: 9c84334d3e5a7de4295edb095ac8f23b, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451265849190698141, guid: 9c84334d3e5a7de4295edb095ac8f23b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4451265849190698141, guid: 9c84334d3e5a7de4295edb095ac8f23b, type: 3}
       propertyPath: m_TagString
@@ -870,7 +878,7 @@ GameObject:
   - component: {fileID: 1327246383}
   - component: {fileID: 1327246382}
   - component: {fileID: 1327246381}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12457,7 +12465,7 @@ GameObject:
   - component: {fileID: 1542041032}
   - component: {fileID: 1542041031}
   - component: {fileID: 1542041036}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12541,7 +12549,7 @@ GameObject:
   - component: {fileID: 1593209084}
   - component: {fileID: 1593209083}
   - component: {fileID: 1593209086}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UI_WhiteOutline_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13049,6 +13057,10 @@ PrefabInstance:
     - target: {fileID: 4451265849190698141, guid: 9c84334d3e5a7de4295edb095ac8f23b, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451265849190698141, guid: 9c84334d3e5a7de4295edb095ac8f23b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4451265849190698141, guid: 9c84334d3e5a7de4295edb095ac8f23b, type: 3}
       propertyPath: m_TagString

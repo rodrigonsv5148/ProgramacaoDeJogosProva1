@@ -356,6 +356,10 @@ PrefabInstance:
       value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 3328589850787703283, guid: b27f59943b95baf47b94052f3bb8436a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328589850787703283, guid: b27f59943b95baf47b94052f3bb8436a, type: 3}
       propertyPath: m_TagString
       value: boss
       objectReference: {fileID: 0}
@@ -413,6 +417,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.47858, y: 0.91286767}
   m_EdgeRadius: 0
+--- !u!114 &861196028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861196025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7196fde185a23c34f8f84b8a8ba3f799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  velBoss: 1.5
+  vidaBoss: 10
 --- !u!1 &1361907280
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1361907282}
   - component: {fileID: 1361907281}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +736,7 @@ GameObject:
   - component: {fileID: 1771323637}
   - component: {fileID: 1771323636}
   - component: {fileID: 1771323635}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

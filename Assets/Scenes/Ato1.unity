@@ -661,6 +661,10 @@ PrefabInstance:
       value: MeleeEnemy1 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3382691352273817379, guid: 9ca2c7637ab52184c975f6f474ddd905, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3382691352273817379, guid: 9ca2c7637ab52184c975f6f474ddd905, type: 3}
       propertyPath: m_TagString
       value: enemy
       objectReference: {fileID: 0}
@@ -3870,7 +3874,7 @@ GameObject:
   - component: {fileID: 1655352940}
   - component: {fileID: 1655352939}
   - component: {fileID: 1655352942}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: "Pe\xE7a 1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4049,6 +4053,10 @@ PrefabInstance:
     - target: {fileID: 3382691352273817379, guid: 9ca2c7637ab52184c975f6f474ddd905, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3382691352273817379, guid: 9ca2c7637ab52184c975f6f474ddd905, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3382691352273817379, guid: 9ca2c7637ab52184c975f6f474ddd905, type: 3}
       propertyPath: m_TagString
