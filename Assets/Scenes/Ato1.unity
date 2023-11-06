@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a66765079cc91469c5e769f424bcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1437881623}
   velInimigo: 1
   vidaInimigo: 3
   visao: 0
@@ -4306,7 +4306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a66765079cc91469c5e769f424bcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1437881623}
   velInimigo: 1
   vidaInimigo: 3
   visao: 0
