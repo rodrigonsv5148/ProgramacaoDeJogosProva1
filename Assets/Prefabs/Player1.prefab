@@ -997,7 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c9a0c9872fd65469354866ad272b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaPersonagem: 100
+  vidaPersonagem: 500
   personagem: 0
   velocidadePersonagem: 5
   forcaPulo: 600

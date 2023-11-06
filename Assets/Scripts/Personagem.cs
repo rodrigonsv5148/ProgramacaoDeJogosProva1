@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /*Tutoriais usados: 
 Animacao:
@@ -135,6 +136,7 @@ public class Personagem : MonoBehaviour
             }
             animator.SetTrigger(deadingHash);
             deadingAudio.Play();
+            SceneManager.LoadScene("MenuPrincipal");
         }
 
         if(machinima == false)
