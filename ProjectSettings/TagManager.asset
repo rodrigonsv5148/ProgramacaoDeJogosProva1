@@ -8,6 +8,8 @@ TagManager:
   - attackEnemy
   - player
   - attackPlayer
+  - playerBase
+  - morte
   layers:
   - Default
   - TransparentFX
