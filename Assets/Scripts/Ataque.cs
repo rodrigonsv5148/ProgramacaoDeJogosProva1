@@ -27,6 +27,7 @@ public class Ataque : MonoBehaviour
             if (vidaInimigo == 0)
             {
                 other.gameObject.SetActive(false);
+                vidaInimigo = 2f;
             }
         }   
 
@@ -36,6 +37,7 @@ public class Ataque : MonoBehaviour
             if (vidaBoss == 0)
             {
                 other.gameObject.SetActive(false);
+                vidaBoss = 9f;
             }
         }     
     }
