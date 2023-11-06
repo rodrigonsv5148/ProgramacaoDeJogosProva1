@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaInimigo: 2
   vidaBoss: 9
+  proxCena: MenuPrincipal
   nomeDaTag: enemy
 --- !u!1 &4201347940929416602
 GameObject:
@@ -1008,7 +1009,7 @@ MonoBehaviour:
   quedaVelocidade: 5
   tempoDeattack: 0.5
   machinima: 0
-  danoDeQueda: 0.1
+  danoDeQueda: 0
   nomeDaTag: enemy
   nomeDaTagDeAtaque: attackEnemy
   basePersonagem: {fileID: 4201347940929416603}
