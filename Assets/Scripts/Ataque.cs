@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Ataque : MonoBehaviour
 {
+    [SerializeField] private float vidaInimigo = 2f;
+    [SerializeField] private float vidaBoss = 9f;
+
     public string nomeDaTag;
     // Start is called before the first frame update
     void Start()
@@ -18,9 +21,22 @@ public class Ataque : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.gameObject.CompareTag(nomeDaTag))
+        if(other.gameObject.CompareTag("enemy"))
+        {   
+            vidaInimigo --;
+            if (vidaInimigo == 0)
+            {
+                other.gameObject.SetActive(false);
+            }
+        }   
+
+        if (other.gameObject.CompareTag("boss"))
         {
-            Debug.Log("acertou"); 
-        }        
+            vidaBoss --;
+            if (vidaBoss == 0)
+            {
+                other.gameObject.SetActive(false);
+            }
+        }     
     }
 }
