@@ -21,7 +21,8 @@ public class ScriptGen : MonoBehaviour
         
     }
 
-    void OnChange()
+    // tenho que pegar carga do dash, vida e posicao do pesonagem, depois destruir um e spawnar outro
+    void OnChangeRight()
     {
         switch (formaAtual)
         {
@@ -44,4 +45,29 @@ public class ScriptGen : MonoBehaviour
                 break;
         }
     }
+    
+    void OnChangeLeft()
+    {
+        switch (formaAtual)
+        {
+            case 0:
+                formaAtual = 2;
+                print(formaAtual);
+                //forma1.position = forma0.position;
+                break;
+
+            case 1:
+                formaAtual = 0;
+                print(formaAtual);
+                //forma2.position = forma1.position;
+                break;
+
+            case 2:
+                formaAtual = 1;
+                print(formaAtual);
+                //forma0.position = forma2.position;
+                break;
+        }
+    }
+
 }

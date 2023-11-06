@@ -27,7 +27,7 @@ public class Personagem : MonoBehaviour
     [SerializeField]private float limiteCargaDash = 3f;
     [SerializeField]private float decrescimoVida = 1f;
     // Velocidade vertical a qual considero que o personagem esta caindo e nao so pulando
-    [SerializeField]private float quedaVelocidade = 5f;
+    [SerializeField]private float quedaVelocidade = 5f; 
     
     // Variaveis dos componentes do personagem
     private Animator animator;
@@ -39,6 +39,9 @@ public class Personagem : MonoBehaviour
     [SerializeField] private bool machinima = false;
     [SerializeField] private float danoDeQueda = 5f;
     [SerializeField] private string nomeDaTag;
+    [SerializeField] private string nomeDaTagDeAtaque;
+    public GameObject novoProjetil;
+    public GameObject novoProjetil1;
 
     // Variaveis auxiliares para realizar a movimentacao horizontal do personagem
     private Vector2 Input = new Vector2();
@@ -65,6 +68,12 @@ public class Personagem : MonoBehaviour
     // Variaveis auxiliares para a animacao de hit
     [SerializeField]private float tempoDeHit = 0.43f;
 
+    // Variaveis auxiliares para a animacao de Shield
+    [SerializeField]private float tempoDeShield = 0.43f;
+
+    // Variaveis auxiliares para a animacao de Special
+    [SerializeField]private float tempoDeSpecial = 0.417f; 
+
     // A unity Recomenda usar um hash como "variavel do animator" p melhorar desempenho
     private int correndoHash = Animator.StringToHash("Correndo");
     private int saltandoHash = Animator.StringToHash("Saltando");
@@ -73,6 +82,8 @@ public class Personagem : MonoBehaviour
     private int dashingHash = Animator.StringToHash("Dashing");
     private int deadingHash = Animator.StringToHash("Deading");
     private int hittedHash = Animator.StringToHash("Hitted");
+    private int barrierHash = Animator.StringToHash("Barrier");
+    private int specialHash = Animator.StringToHash("Special");
 
     // Variaveis relacionadas aos audios do personagem
     [SerializeField]private AudioSource correndoAudio;
@@ -81,6 +92,8 @@ public class Personagem : MonoBehaviour
     [SerializeField]private AudioSource dashingAudio;
     [SerializeField]private AudioSource deadingAudio;
     [SerializeField]private AudioSource hittedAudio;
+    [SerializeField]private AudioSource barrierAudio;
+    [SerializeField]private AudioSource specialAudio;
 
     // Variaveis de contagem de tempo
     private float tempo = 0f;
@@ -110,9 +123,12 @@ public class Personagem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        vidaPersonagem -= (decrescimoVida * 0.001f);
-        //------------------------------------PODE TIRAR O PRINT ABAIXO -----------------------
-        print(vidaPersonagem);
+        if (vidaPersonagem >= 0)
+        {
+            vidaPersonagem -= (decrescimoVida * 0.001f);
+        }
+        
+
         // Animacao de morte do personagem
         if(vidaPersonagem < 0f)
         {
@@ -126,6 +142,7 @@ public class Personagem : MonoBehaviour
 
         if(machinima == false)
         {
+            // Auxiliar do Dash
             tempo += Time.deltaTime;
 
             // Loading do Dash
@@ -154,7 +171,6 @@ public class Personagem : MonoBehaviour
             if (rb.velocity.y < -quedaVelocidade && permitirPulo == false)
             {
                 vidaPersonagem = vidaPersonagem - danoDeQueda;
-                print(vidaPersonagem);
             }
 
             // Audios do personagem
@@ -163,7 +179,6 @@ public class Personagem : MonoBehaviour
             {
                 correndoAudio.Stop();
             }
-
 
             //  ------------ Controla o lado das animacoes, se estao para frente o para tras;
             if(horizontalInput > 0)
@@ -191,14 +206,15 @@ public class Personagem : MonoBehaviour
     // Controle de pulo do personagem
     void OnJump()
     {
-        if (personagem == 1)
+        if (personagem == 0 || personagem == 2)
         {
             if(machinima == false)
             {
                 // Codigo do pulo em si
                 if(permitirPulo == true)
                 {
-                    saltandoAudio.Play();
+                    // ---------------------------------------------Aqui----------------------------
+                    //saltandoAudio.Play();
                     rb.AddForce(Vector2.up * forcaPulo);
                 }
             }
@@ -246,16 +262,39 @@ public class Personagem : MonoBehaviour
                 // Ve se o personagem tem carga para o dash
                 if(cargaDash > 0)
                 {
+                    switch (personagem)
+                    {
+                        case 0:
+                            if(sr.flipX == false)
+                            {
+                                rb.AddForce(Vector2.right * forcaDash);
+                            }else
+                            {
+                                rb.AddForce(Vector2.left * forcaDash);
+                            }
+                            break; 
+                        case 1:
+                            if(sr.flipX == false)
+                            {
+                                rb.AddForce(Vector2.right * forcaDash * 2);
+                            }else
+                            {
+                                rb.AddForce(Vector2.left * forcaDash * 2);
+                            }
+                            break;
+                        case 2:
+                            if(sr.flipX == false)
+                            {
+                                rb.AddForce(Vector2.right * forcaDash * 2);
+                            }else
+                            {
+                                rb.AddForce(Vector2.left * forcaDash * 2);
+                            }
+                            break;
+                    }
+
                     dashingAudio.Play();
                     animator.SetTrigger(dashingHash);
-
-                    if(sr.flipX == false)
-                    {
-                        rb.AddForce(Vector2.right * forcaDash);
-                    }else
-                    {
-                        rb.AddForce(Vector2.left * forcaDash);
-                    }       
                     cargaDash--;
                 }
             }
@@ -265,21 +304,94 @@ public class Personagem : MonoBehaviour
     // Animacao ho hit no personagem
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.gameObject.CompareTag(nomeDaTag))
+        if(machinima == false)
         {
-            hittedAudio.Play();
-            animator.SetTrigger(hittedHash);
+            if(other.gameObject.CompareTag(nomeDaTag))
+            {
+                hittedAudio.Play();
+                animator.SetTrigger(hittedHash);
+                
+                machinima = true;
+                
+                StartCoroutine(hittedTime());
+            }
             
-            machinima = true;
-            
-            StartCoroutine(hittedTime());
+            if(other.gameObject.CompareTag(nomeDaTagDeAtaque))
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 
+    // Funcao responsavel por fazer o personagem ficar parado quando sofre um hit
     private IEnumerator hittedTime()
     {
         yield return new WaitForSeconds(tempoDeHit);
         machinima = false;
         vidaPersonagem = -1f;
     }
+
+    // Funcao responsavel por fazer o personagem ficar parado quando ativa o escudo
+    private IEnumerator shieldTime()
+    {
+        yield return new WaitForSeconds(tempoDeShield);
+        
+        rb.velocity = new Vector2(horizontalInput * velocidadePersonagem, rb.velocity.y);
+
+        machinima = false;
+    }
+
+    private IEnumerator specialTime()
+    {
+        yield return new WaitForSeconds(tempoDeSpecial);
+        
+        rb.velocity = new Vector2(horizontalInput * velocidadePersonagem, rb.velocity.y);
+
+        machinima = false;
+    }
+
+    // Funcao responsavel pelas skills especiais das transformacoes do alien
+    void OnSpecial()
+    {
+        if(machinima == false && personagem == 1)
+        {
+            if (cargaDash > 0 && Time.time > proximoAtaque)
+            {
+                
+                rb.velocity = Vector2.zero;
+                correndoAudio.Stop();
+                animator.SetBool(correndoHash, rb.velocity.x == 0);
+                cargaDash--;
+                StartCoroutine(shieldTime());
+                machinima = true;
+                animator.SetTrigger(barrierHash);
+                barrierAudio.Play();
+            }            
+        }
+        if(machinima == false && personagem == 2)
+        {
+            if (cargaDash > 0 && Time.time > proximoAtaque)
+            {
+                rb.velocity = Vector2.zero;
+                correndoAudio.Stop();
+                animator.SetBool(correndoHash, rb.velocity.x == 0);
+                cargaDash--;
+                StartCoroutine(specialTime());
+                machinima = true;
+                animator.SetTrigger(specialHash);    
+                specialAudio.Play();
+                if(sr.flipX == false)
+                {
+                    novoProjetil1 = Instantiate(novoProjetil, frente.position, Quaternion.identity);
+                    novoProjetil1.GetComponent<Projetil>().direcao = Vector2.right;
+                }else
+                {
+                    novoProjetil1 = Instantiate(novoProjetil, atras.position, Quaternion.identity);
+                    novoProjetil1.GetComponent<Projetil>().direcao = Vector2.right;
+                } 
+            }            
+        }
+    }
 }
+
+// Audios, spawn do golpe, som de fogo do golpe, configurar o golpe

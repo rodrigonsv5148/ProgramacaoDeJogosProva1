@@ -38,9 +38,25 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Change",
+                    "name": "Special",
+                    "type": "Button",
+                    "id": "f6e5f6d4-82c6-4da6-868b-0bee5af97eb1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ChangeRight",
                     "type": "Button",
                     "id": "ac98cf8b-20e5-4fde-9c41-8803f8d549bb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ChangeLeft",
+                    "type": "Button",
+                    "id": "dab0eb17-96f7-4e2f-a306-5cc8366c361b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -230,7 +246,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Change",
+                    "action": "ChangeRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -240,8 +256,52 @@
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Change",
+                    "groups": "Gamepad",
+                    "action": "ChangeRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4cf3d2a9-e6bc-41dd-bfa1-195a71ccdfbd",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ChangeLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5073a01e-8e93-4106-b923-b865640c66a9",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ChangeLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f05c54fc-2e0f-45e0-b767-a2c3876047a2",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Special",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e9eea51-6766-4fc8-9a2a-2c9ec11be181",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
