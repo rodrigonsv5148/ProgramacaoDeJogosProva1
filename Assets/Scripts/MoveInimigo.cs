@@ -43,6 +43,7 @@ public class MoveInimigo : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+           
              visao = true;
         }
        
