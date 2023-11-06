@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Levitacao : MonoBehaviour
+public class ApenasCimaBaixo : MonoBehaviour
 {
 
     public float velLevitacao = 1.0f; 
     public float altLevitacao = 0.5f;
     private Vector3 posicaoInicial;
-    [SerializeField]private string proxCena = "Ato2";
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +28,6 @@ public class Levitacao : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gameObject.SetActive(false);
-            SceneManager.LoadScene(proxCena);
         }
     }
 }
