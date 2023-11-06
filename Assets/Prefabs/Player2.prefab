@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaInimigo: 2
   vidaBoss: 9
+  proxCena: MenuPrincipal
   nomeDaTag: enemy
 --- !u!1 &3774756975280751839
 GameObject:
@@ -948,7 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c9a0c9872fd65469354866ad272b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaPersonagem: 100
+  vidaPersonagem: 500
   personagem: 1
   velocidadePersonagem: 4
   forcaPulo: 600
@@ -960,7 +961,7 @@ MonoBehaviour:
   quedaVelocidade: 10
   tempoDeattack: 0.5
   machinima: 0
-  danoDeQueda: 0.3
+  danoDeQueda: 0
   nomeDaTag: enemy
   nomeDaTagDeAtaque: attackEnemy
   basePersonagem: {fileID: 3774756976540365346}

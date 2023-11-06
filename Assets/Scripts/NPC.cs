@@ -13,8 +13,6 @@ public class NPC : MonoBehaviour
     void Start()
     {
         fala1.gameObject.SetActive(false);
-        fala1.text = "Perdoe-nos por nossa hostilidade extrangeiro, somos escravos de um tirano... O quê? Você vai nos ajudar? Então pegue a relíquia adiante e boa sorte!";
-       
     }
 
     // Update is called once per frame

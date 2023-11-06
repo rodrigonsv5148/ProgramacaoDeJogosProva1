@@ -687,10 +687,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c9a0c9872fd65469354866ad272b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaPersonagem: 100
+  vidaPersonagem: 500
   personagem: 2
   velocidadePersonagem: 5
-  forcaPulo: 750
+  forcaPulo: 900
   forcaDash: 5000
   cargaDash: 4
   tempoCargaDash: 3
@@ -699,7 +699,7 @@ MonoBehaviour:
   quedaVelocidade: 3
   tempoDeattack: 0.5
   machinima: 0
-  danoDeQueda: 0.2
+  danoDeQueda: 0
   nomeDaTag: enemy
   nomeDaTagDeAtaque: attackEnemy
   basePersonagem: {fileID: 6126217778290496907}
@@ -1136,6 +1136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaInimigo: 2
   vidaBoss: 9
+  proxCena: MenuPrincipal
   nomeDaTag: enemy
 --- !u!1 &6126217777132086134
 GameObject:

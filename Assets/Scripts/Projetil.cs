@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Projetil : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Projetil : MonoBehaviour
     public int dano = 10;
     public Vector2 direcao = Vector2.right; // Direção padrão (direita)
     public string alvo;
+    [SerializeField] private int vidaBoss = 5;
+    [SerializeField]private string proxCena = "MenuPrincipal";
 
     void Update()
     {
@@ -24,14 +27,17 @@ public class Projetil : MonoBehaviour
 
             Destroy(this.gameObject, 0.4f);    
         }
+
+        if (other.gameObject.CompareTag("boss"))
+        {
+            vidaBoss --;
+            if (vidaBoss == 0)
+            {
+                other.gameObject.SetActive(false);
+                vidaBoss = 5;
+                SceneManager.LoadScene(proxCena);
+            }
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.CompareTag(alvo))
-        {
-            Debug.Log("acertou2"); 
-            Destroy(this.gameObject, 0.4f);    
-        }   
-    }
 }

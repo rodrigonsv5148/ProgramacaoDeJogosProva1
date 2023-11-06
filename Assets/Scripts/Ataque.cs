@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ataque : MonoBehaviour
 {
-    [SerializeField] private float vidaInimigo = 2f;
-    [SerializeField] private float vidaBoss = 9f;
+    [SerializeField] private int vidaInimigo = 2;
+    [SerializeField] private int vidaBoss = 5;
+    [SerializeField]private string proxCena = "MenuPrincipal";
 
     public string nomeDaTag;
     // Start is called before the first frame update
@@ -27,7 +29,7 @@ public class Ataque : MonoBehaviour
             if (vidaInimigo == 0)
             {
                 other.gameObject.SetActive(false);
-                vidaInimigo = 2f;
+                vidaInimigo = 2;
             }
         }   
 
@@ -37,7 +39,8 @@ public class Ataque : MonoBehaviour
             if (vidaBoss == 0)
             {
                 other.gameObject.SetActive(false);
-                vidaBoss = 9f;
+                vidaBoss = 5;
+                SceneManager.LoadScene(proxCena);
             }
         }     
     }
