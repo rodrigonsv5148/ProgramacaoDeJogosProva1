@@ -8,6 +8,10 @@ TagManager:
   - attackEnemy
   - player
   - attackPlayer
+<<<<<<< HEAD
+=======
+  - playerBase
+>>>>>>> e5519d804e1be3ecbe45d4884ad7d9038cf6679b
   - morte
   layers:
   - Default
