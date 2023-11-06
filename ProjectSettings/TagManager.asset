@@ -3,16 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< Updated upstream
   tags:
   - player
   - attackPlayer
   - morte
   - enemy
-  - boss
-=======
-  tags: []
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -20,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - chao
   - 
   - 
   - 
