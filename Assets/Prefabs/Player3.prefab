@@ -87,7 +87,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 32
   m_Sprite: {fileID: -2130596545808862526, guid: 9ecaf612ffc4eac4da1f261c008b161a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1134,6 +1134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be286c1158dc59f4a8e9f0051356469c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vidaInimigo: 2
+  vidaBoss: 9
   nomeDaTag: enemy
 --- !u!1 &6126217777132086134
 GameObject:

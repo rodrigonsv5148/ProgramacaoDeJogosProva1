@@ -8,7 +8,6 @@ TagManager:
   - attackPlayer
   - morte
   - enemy
-  - boss
   layers:
   - Default
   - TransparentFX
@@ -16,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - chao
   - 
   - 
   - 

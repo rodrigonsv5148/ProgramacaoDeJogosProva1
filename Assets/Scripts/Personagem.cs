@@ -321,9 +321,13 @@ public class Personagem : MonoBehaviour
             }
         }
         if(other.gameObject.CompareTag("morte"))
-            {
-                vidaPersonagem = 0f;
-            }
+        {
+            vidaPersonagem = 0f;
+        }
+        if(other.gameObject.CompareTag("boss"))
+        {
+            vidaPersonagem -= 15f;
+        }
     }
 
     // Funcao responsavel por fazer o personagem ficar parado quando sofre um hit
