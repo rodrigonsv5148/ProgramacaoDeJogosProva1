@@ -11,6 +11,7 @@ public class ScriptGen : MonoBehaviour
     [SerializeField]private Transform posicaoInicial;
     Transform novaforma;
     private int formaAtual = 0;
+    Vector3 posicaoObjeto;
 
     void Awake()
     {
@@ -24,7 +25,8 @@ public class ScriptGen : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        posicaoInicial.transform.position = novaforma.transform.position;
     }
 
     // tenho que pegar carga do dash, vida e posicao do pesonagem, depois destruir um e spawnar outro
@@ -33,7 +35,7 @@ public class ScriptGen : MonoBehaviour
         switch (formaAtual)
         {
             case 0:
-                Vector3 posicaoObjeto = novaforma.transform.position;
+                posicaoObjeto = novaforma.transform.position;
                 Destroy(novaforma.gameObject, 0.0f);
                 novaforma = Instantiate(forma1, novaforma.transform.position, Quaternion.identity);
                 formaAtual = 1;
@@ -62,7 +64,7 @@ public class ScriptGen : MonoBehaviour
         switch (formaAtual)
         {
             case 0:
-                Vector3 posicaoObjeto = novaforma.transform.position;
+                posicaoObjeto = novaforma.transform.position;
                 Destroy(novaforma.gameObject, 0.0f);
                 novaforma = Instantiate(forma2, novaforma.transform.position, Quaternion.identity);
                 formaAtual = 2;
